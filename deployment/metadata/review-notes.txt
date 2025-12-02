@@ -1,0 +1,17 @@
+Thank you for reviewing PixelLearn!
+
+This is an educational app for children featuring:
+- Math quizzes (addition, subtraction, multiplication, division)
+- Grammar quizzes (spelling, vocabulary, sentence structure)
+- Memory card matching game
+
+Key features to test:
+1. Home screen - tap any subject card
+2. Solo mode - answer questions, level adjusts automatically
+3. Multiplayer - add 2-4 players, take turns answering
+4. Memory game - match emoji pairs, try different themes
+5. Profile switcher - tap profile on home screen
+
+The app works completely offline with no accounts required.
+
+No in-app purchases or subscriptions.

@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00000001 /* PixelLearnApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000001 /* PixelLearnApp.swift */; };
+		00000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000002 /* ContentView.swift */; };
+		00000003 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000003 /* Subject.swift */; };
+		00000004 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000004 /* Question.swift */; };
+		00000005 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000005 /* UserProfile.swift */; };
+		00000007 /* QuizSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000007 /* QuizSession.swift */; };
+		00000009 /* QuestionBankService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10000009 /* QuestionBankService.swift */; };
+		0000000A /* AdaptiveLevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000A /* AdaptiveLevelManager.swift */; };
+		0000000B /* QuizEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000B /* QuizEngine.swift */; };
+		0000000D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000D /* HomeView.swift */; };
+		0000000F /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1000000F /* QuizView.swift */; };
+		00000018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10000018 /* Assets.xcassets */; };
+		AAB401A02EDD4ED7002FA4F2 /* MultiplayerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4019E2EDD4ED7002FA4F2 /* MultiplayerSetupView.swift */; };
+		AAB401A12EDD4ED7002FA4F2 /* MultiplayerGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4019C2EDD4ED7002FA4F2 /* MultiplayerGameView.swift */; };
+		AAB401A22EDD4ED7002FA4F2 /* MultiplayerMemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4019D2EDD4ED7002FA4F2 /* MultiplayerMemoryGameView.swift */; };
+		AAB401A42EDD4F03002FA4F2 /* MemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401A32EDD4F03002FA4F2 /* MemoryGameView.swift */; };
+		AAB401C62EDE45A0002FA4F2 /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401C42EDE45A0002FA4F2 /* SharedComponents.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		10000000 /* PixelLearn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelLearn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10000001 /* PixelLearnApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelLearnApp.swift; sourceTree = "<group>"; };
+		10000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		10000003 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
+		10000004 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		10000005 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		10000007 /* QuizSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSession.swift; sourceTree = "<group>"; };
+		10000009 /* QuestionBankService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBankService.swift; sourceTree = "<group>"; };
+		1000000A /* AdaptiveLevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveLevelManager.swift; sourceTree = "<group>"; };
+		1000000B /* QuizEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizEngine.swift; sourceTree = "<group>"; };
+		1000000D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1000000F /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		10000018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAB4019C2EDD4ED7002FA4F2 /* MultiplayerGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameView.swift; sourceTree = "<group>"; };
+		AAB4019D2EDD4ED7002FA4F2 /* MultiplayerMemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerMemoryGameView.swift; sourceTree = "<group>"; };
+		AAB4019E2EDD4ED7002FA4F2 /* MultiplayerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerSetupView.swift; sourceTree = "<group>"; };
+		AAB401A32EDD4F03002FA4F2 /* MemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameView.swift; sourceTree = "<group>"; };
+		AAB401C42EDE45A0002FA4F2 /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComponents.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30000000 = {
+			isa = PBXGroup;
+			children = (
+				30000001 /* PixelLearn */,
+				30000002 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		30000001 /* PixelLearn */ = {
+			isa = PBXGroup;
+			children = (
+				30000003 /* App */,
+				30000004 /* Core */,
+				30000005 /* Features */,
+				30000006 /* Resources */,
+			);
+			path = PixelLearn;
+			sourceTree = "<group>";
+		};
+		30000002 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10000000 /* PixelLearn.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30000003 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				10000001 /* PixelLearnApp.swift */,
+				10000002 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		30000004 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AAB401C52EDE45A0002FA4F2 /* Components */,
+				30000007 /* Models */,
+				30000008 /* Services */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		30000005 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				AAB4019F2EDD4ED7002FA4F2 /* Multiplayer */,
+				30000009 /* Home */,
+				3000000A /* Adventure */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		30000006 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				10000018 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		30000007 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				10000003 /* Subject.swift */,
+				10000004 /* Question.swift */,
+				10000005 /* UserProfile.swift */,
+				10000007 /* QuizSession.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		30000008 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				10000009 /* QuestionBankService.swift */,
+				1000000A /* AdaptiveLevelManager.swift */,
+				1000000B /* QuizEngine.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		30000009 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1000000D /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		3000000A /* Adventure */ = {
+			isa = PBXGroup;
+			children = (
+				1000000F /* QuizView.swift */,
+				AAB401A32EDD4F03002FA4F2 /* MemoryGameView.swift */,
+			);
+			path = Adventure;
+			sourceTree = "<group>";
+		};
+		AAB4019F2EDD4ED7002FA4F2 /* Multiplayer */ = {
+			isa = PBXGroup;
+			children = (
+				AAB4019C2EDD4ED7002FA4F2 /* MultiplayerGameView.swift */,
+				AAB4019D2EDD4ED7002FA4F2 /* MultiplayerMemoryGameView.swift */,
+				AAB4019E2EDD4ED7002FA4F2 /* MultiplayerSetupView.swift */,
+			);
+			path = Multiplayer;
+			sourceTree = "<group>";
+		};
+		AAB401C52EDE45A0002FA4F2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AAB401C42EDE45A0002FA4F2 /* SharedComponents.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40000001 /* PixelLearn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50000001 /* Build configuration list for PBXNativeTarget "PixelLearn" */;
+			buildPhases = (
+				40000002 /* Sources */,
+				20000001 /* Frameworks */,
+				40000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PixelLearn;
+			productName = PixelLearn;
+			productReference = 10000000 /* PixelLearn.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		60000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					40000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 50000002 /* Build configuration list for PBXProject "PixelLearn" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 30000000;
+			productRefGroup = 30000002 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40000001 /* PixelLearn */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00000018 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00000001 /* PixelLearnApp.swift in Sources */,
+				AAB401A42EDD4F03002FA4F2 /* MemoryGameView.swift in Sources */,
+				00000002 /* ContentView.swift in Sources */,
+				00000003 /* Subject.swift in Sources */,
+				00000004 /* Question.swift in Sources */,
+				00000005 /* UserProfile.swift in Sources */,
+				00000007 /* QuizSession.swift in Sources */,
+				00000009 /* QuestionBankService.swift in Sources */,
+				0000000A /* AdaptiveLevelManager.swift in Sources */,
+				0000000B /* QuizEngine.swift in Sources */,
+				AAB401C62EDE45A0002FA4F2 /* SharedComponents.swift in Sources */,
+				0000000D /* HomeView.swift in Sources */,
+				AAB401A02EDD4ED7002FA4F2 /* MultiplayerSetupView.swift in Sources */,
+				AAB401A12EDD4ED7002FA4F2 /* MultiplayerGameView.swift in Sources */,
+				AAB401A22EDD4ED7002FA4F2 /* MultiplayerMemoryGameView.swift in Sources */,
+				0000000F /* QuizView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		70000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		70000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		70000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = TUG3BHLSM4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixellearn.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		70000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = TUG3BHLSM4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixellearn.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50000001 /* Build configuration list for PBXNativeTarget "PixelLearn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70000003 /* Debug */,
+				70000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50000002 /* Build configuration list for PBXProject "PixelLearn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70000001 /* Debug */,
+				70000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 60000001 /* Project object */;
+}

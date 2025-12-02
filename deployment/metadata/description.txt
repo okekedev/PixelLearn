@@ -1,0 +1,50 @@
+Make learning fun with PixelLearn - the adaptive educational app for kids.
+
+PixelLearn helps children build essential skills in math, grammar, and memory through engaging quizzes and games. With adaptive difficulty that grows with your child, every session is perfectly challenging.
+
+SUBJECTS
+
+• Math
+Practice addition, subtraction, multiplication, division, and more. Questions adapt from basic counting to advanced problem solving across 65 difficulty levels.
+
+• Grammar
+Build language skills with spelling, vocabulary, sentence structure, and punctuation exercises. Perfect for developing strong reading and writing foundations.
+
+• Memory
+Train focus and recall with the classic card matching game. Choose from 7 fun emoji themes including fruits, animals, vehicles, nature, sports, and food.
+
+ADAPTIVE LEARNING
+
+PixelLearn adjusts to your child's skill level automatically. Get two answers right in a row and level up. Make a mistake and practice at an easier level. This keeps kids engaged without frustration.
+
+MULTIPLAYER MODE
+
+Turn learning into family game time! Up to 4 players can compete head-to-head on the same device. Take turns answering questions or matching cards. Perfect for siblings, friends, or parent-child learning sessions.
+
+• Pass-and-play multiplayer for 2-4 players
+• Individual score tracking
+• Each player has their own difficulty level
+• Choose any subject for multiplayer games
+
+MEMORY GAME FEATURES
+
+• 6 card count options: 8, 16, 24, 32, 48, or 64 cards
+• 7 emoji themes to choose from
+• Move counter to track your progress
+• Solo play tracks moves (not saved - just for fun!)
+• Multiplayer tracks pairs found per player
+
+PROFILES
+
+Create profiles for each child to track their individual progress. Switch between profiles easily from the home screen. Each profile maintains separate levels for all subjects.
+
+• Track correct answers
+• Track multiplayer wins
+• Individual progress per subject
+• Custom avatars
+
+PRIVACY FOCUSED
+
+PixelLearn works completely offline. No accounts, no ads, no data collection, no internet required. Your child's learning stays on your device.
+
+Download PixelLearn today and make learning an adventure!
