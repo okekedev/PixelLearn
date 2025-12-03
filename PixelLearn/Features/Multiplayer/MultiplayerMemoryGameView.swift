@@ -63,6 +63,7 @@ struct MultiplayerMemoryGameView: View {
         .onAppear {
             cards = MemoryGameHelper.createCards(pairCount: pairCount, emojiSet: emojiSet)
         }
+        .supportedOrientations(.landscape)
     }
 
     private var scoreBoard: some View {
@@ -109,7 +110,7 @@ struct MultiplayerMemoryGameView: View {
 
     private var gameGrid: some View {
         GeometryReader { geometry in
-            let spacing: CGFloat = 6
+            let spacing: CGFloat = 12
             let availableWidth = max(0, geometry.size.width - (spacing * CGFloat(columnCount - 1)))
             let availableHeight = max(0, geometry.size.height - (spacing * CGFloat(rows - 1)))
             let cardSize = max(1, min(availableWidth / CGFloat(columnCount), availableHeight / CGFloat(rows)))
@@ -200,7 +201,7 @@ struct MultiplayerMemoryGameView: View {
         let card1 = cards[indices[0]]
         let card2 = cards[indices[1]]
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             if card1.symbol == card2.symbol {
                 withAnimation {
                     matchedIndices.insert(indices[0])

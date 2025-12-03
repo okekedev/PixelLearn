@@ -1,5 +1,35 @@
 import SwiftUI
 
+// MARK: - Orientation Support
+
+struct OrientationModifier: ViewModifier {
+    let orientations: UIInterfaceOrientationMask
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                AppDelegate.orientationLock = orientations
+                if orientations == .landscape {
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+                    }
+                }
+            }
+            .onDisappear {
+                AppDelegate.orientationLock = .all
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: .portrait))
+                }
+            }
+    }
+}
+
+extension View {
+    func supportedOrientations(_ orientations: UIInterfaceOrientationMask) -> some View {
+        modifier(OrientationModifier(orientations: orientations))
+    }
+}
+
 // MARK: - Memory Game Components
 
 struct MemoryCard: Identifiable {
@@ -128,12 +158,21 @@ enum MemoryGameHelper {
         return cards.shuffled()
     }
 
+    // Landscape-optimized column counts (more columns = wider layout)
     static func columnCount(for cardCount: Int) -> Int {
-        cardCount <= 8 ? 2 : (cardCount <= 16 ? 4 : (cardCount <= 36 ? 6 : 8))
+        switch cardCount {
+        case 8: return 4      // 4x2
+        case 16: return 8     // 8x2
+        case 24: return 8     // 8x3
+        case 32: return 8     // 8x4
+        case 48: return 12    // 12x4
+        case 64: return 16    // 16x4
+        default: return 8
+        }
     }
 
     static func gridColumns(for cardCount: Int) -> [GridItem] {
-        Array(repeating: GridItem(.flexible(), spacing: 8), count: columnCount(for: cardCount))
+        Array(repeating: GridItem(.flexible(), spacing: 12), count: columnCount(for: cardCount))
     }
 }
 
