@@ -116,7 +116,7 @@ struct MultiplayerSetupView: View {
                 Text("Players")
                     .font(.headline)
                 Spacer()
-                Text("\(players.count)/\(Design.Game.maxPlayers)")
+                Text("\(players.count)/4")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -135,7 +135,7 @@ struct MultiplayerSetupView: View {
             }
 
             // Inline add player section
-            if players.count < Design.Game.maxPlayers {
+            if players.count < 4 {
                 addPlayerSection
             }
         }
@@ -273,7 +273,7 @@ struct MultiplayerSetupView: View {
                         Slider(value: Binding(
                             get: { Double(guestLevel) },
                             set: { guestLevel = Int($0) }
-                        ), in: Double(Design.Game.minLevel)...Double(Design.Game.maxLevel), step: 1)
+                        ), in: 1.0...65.0, step: 1)
                         .tint(nextPlayerColor)
                     }
                 }
@@ -469,15 +469,15 @@ struct MultiplayerSetupView: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: players.count >= Design.Game.minPlayers ? themeColors : [.gray, .gray],
+                        colors: players.count >= 2 ? themeColors : [.gray, .gray],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
                 )
-                .clipShape(RoundedRectangle(cornerRadius: Design.CornerRadius.button))
-                .shadow(color: players.count >= Design.Game.minPlayers ? themeColors[0].opacity(0.4) : .clear, radius: 8, y: 4)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .shadow(color: players.count >= 2 ? themeColors[0].opacity(0.4) : .clear, radius: 8, y: 4)
         }
-        .disabled(players.count < Design.Game.minPlayers)
+        .disabled(players.count < 2)
     }
 }
 
@@ -535,7 +535,7 @@ struct PlayerRowWithSlider: View {
                     Slider(value: Binding(
                         get: { Double(player.level) },
                         set: { player.level = Int($0) }
-                    ), in: Double(Design.Game.minLevel)...Double(Design.Game.maxLevel), step: 1)
+                    ), in: 1.0...65.0, step: 1)
                     .tint(player.color)
                 }
             }
