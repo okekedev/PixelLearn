@@ -19,6 +19,7 @@ struct MultiplayerGameView: View {
     @State private var showingResult = false
     @State private var showingPassDevice = false
     @State private var showingFinalResult = false
+    @State private var showingPodium = false
     @State private var timeRemaining = 10
     @State private var timerActive = false
     @State private var passCountdown = 3
@@ -49,7 +50,9 @@ struct MultiplayerGameView: View {
 
                 timerView
 
-                if showingFinalResult {
+                if showingPodium {
+                    podiumOverlay
+                } else if showingFinalResult {
                     finalResultView
                 } else if showingPassDevice {
                     passDeviceView
@@ -239,64 +242,38 @@ struct MultiplayerGameView: View {
         VStack(spacing: 24) {
             Spacer()
 
-            let maxScore = scores.max() ?? 0
-            let winners = players.enumerated().filter { scores[$0.offset] == maxScore }
+            ProgressView()
+                .scaleEffect(1.5)
 
-            if winners.count == 1 {
-                VStack(spacing: 16) {
-                    Image(systemName: "trophy.fill")
-                        .font(.system(size: 80))
-                        .foregroundColor(.yellow)
-
-                    Text("\(winners[0].element.name) Wins!")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(winners[0].element.color)
-                }
-            } else {
-                VStack(spacing: 16) {
-                    Image(systemName: "equal.circle.fill")
-                        .font(.system(size: 80))
-                        .foregroundColor(.orange)
-
-                    Text("It's a Tie!")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.orange)
-                }
-            }
-
-            VStack(spacing: 8) {
-                ForEach(Array(players.enumerated()), id: \.offset) { index, player in
-                    HStack {
-                        Circle()
-                            .fill(player.color)
-                            .frame(width: 20, height: 20)
-                        Text(player.name)
-                            .font(.headline)
-                        Spacer()
-                        Text("\(scores[index])")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(player.color)
-                    }
-                    .padding(.horizontal)
-                }
-            }
-            .padding()
-            .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-            .padding(.horizontal)
-
-            Spacer()
-
-            PrimaryButton(title: "Done", colors: [.green, .teal]) {
-                dismiss()
-            }
-            .padding()
+            Text("Calculating Results...")
+                .font(.headline)
+                .foregroundColor(.white)
 
             Spacer()
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                showingFinalResult = false
+                showingPodium = true
+            }
+        }
+    }
+
+    private var podiumOverlay: some View {
+        PodiumCelebrationView(
+            results: players.enumerated().map { index, player in
+                PodiumResult(
+                    name: player.name,
+                    score: scores[index],
+                    color: player.color,
+                    profileId: player.profileId
+                )
+            },
+            onDismiss: {
+                dismiss()
+            }
+        )
+        .ignoresSafeArea()
     }
 
     private func selectAnswer(_ index: Int) {
@@ -355,18 +332,28 @@ struct MultiplayerGameView: View {
     }
 
     private func awardWins() {
-        let maxScore = scores.max() ?? 0
-        let winnerIndices = scores.enumerated().filter { $0.element == maxScore }.map { $0.offset }
+        // Sort players by score to determine placement
+        let sortedPlayers = players.enumerated()
+            .map { (index: $0.offset, player: $0.element, score: scores[$0.offset]) }
+            .sorted { $0.score > $1.score }
 
-        // Only award win if there's a single winner (no ties)
-        if winnerIndices.count == 1 {
-            let winnerIndex = winnerIndices[0]
-            let winnerPlayer = players[winnerIndex]
+        // Award trophies based on placement
+        for (placement, playerData) in sortedPlayers.enumerated() {
+            guard let profileId = playerData.player.profileId,
+                  let profile = profiles.first(where: { $0.id == profileId }) else {
+                continue
+            }
 
-            // If winner has a profile, increment their wins
-            if let profileId = winnerPlayer.profileId,
-               let profile = profiles.first(where: { $0.id == profileId }) {
+            switch placement {
+            case 0: // 1st place - Gold
+                profile.goldTrophies += 1
                 profile.totalWins += 1
+            case 1: // 2nd place - Silver
+                profile.silverTrophies += 1
+            case 2: // 3rd place - Bronze
+                profile.bronzeTrophies += 1
+            default:
+                break
             }
         }
     }

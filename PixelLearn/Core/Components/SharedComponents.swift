@@ -295,3 +295,25 @@ struct StatItem: View {
     }
 }
 
+struct TrophyItem: View {
+    let emoji: String
+    let count: Int
+    let label: String
+
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(emoji)
+                .font(.system(size: 28))
+
+            Text("\(count)")
+                .font(.headline)
+                .fontWeight(.bold)
+
+            Text(label)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+    }
+}
+

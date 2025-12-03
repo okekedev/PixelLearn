@@ -17,6 +17,7 @@ struct MultiplayerMemoryGameView: View {
     @State private var currentPlayerIndex = 0
     @State private var scores: [Int]
     @State private var showingResult = false
+    @State private var showingPodium = false
 
     private var pairCount: Int { cardCount / 2 }
     private var currentPlayer: PlayerConfig { players[currentPlayerIndex] }
@@ -39,7 +40,9 @@ struct MultiplayerMemoryGameView: View {
                 scoreBoard
                 currentPlayerIndicator
 
-                if showingResult {
+                if showingPodium {
+                    podiumOverlay
+                } else if showingResult {
                     resultView
                 } else {
                     gameGrid
@@ -132,52 +135,41 @@ struct MultiplayerMemoryGameView: View {
     }
 
     private var resultView: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 24) {
             Spacer()
 
-            let maxScore = scores.max() ?? 0
-            let winners = players.enumerated().filter { scores[$0.offset] == maxScore }
+            ProgressView()
+                .scaleEffect(1.5)
 
-            Image(systemName: "trophy.fill")
-                .font(.system(size: 60))
-                .foregroundColor(.yellow)
-
-            if winners.count == 1 {
-                Text("\(winners[0].element.name) Wins!")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(winners[0].element.color)
-            } else {
-                Text("It's a Tie!")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.orange)
-            }
-
-            CardSection {
-                VStack(spacing: 8) {
-                    ForEach(Array(players.enumerated()), id: \.offset) { index, player in
-                        HStack {
-                            Circle()
-                                .fill(player.color)
-                                .frame(width: 16, height: 16)
-                            Text(player.name)
-                                .font(.subheadline)
-                            Spacer()
-                            Text("\(scores[index])")
-                                .font(.headline)
-                                .foregroundColor(player.color)
-                        }
-                    }
-                }
-            }
+            Text("Calculating Results...")
+                .font(.headline)
+                .foregroundColor(.white)
 
             Spacer()
-
-            PrimaryButton(title: "Done", colors: [.purple, .pink]) {
-                dismiss()
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                showingResult = false
+                showingPodium = true
             }
         }
+    }
+
+    private var podiumOverlay: some View {
+        PodiumCelebrationView(
+            results: players.enumerated().map { index, player in
+                PodiumResult(
+                    name: player.name,
+                    score: scores[index],
+                    color: player.color,
+                    profileId: player.profileId
+                )
+            },
+            onDismiss: {
+                dismiss()
+            }
+        )
+        .ignoresSafeArea()
     }
 
     private func cardTapped(at index: Int) {
@@ -226,18 +218,28 @@ struct MultiplayerMemoryGameView: View {
     }
 
     private func awardWins() {
-        let maxScore = scores.max() ?? 0
-        let winnerIndices = scores.enumerated().filter { $0.element == maxScore }.map { $0.offset }
+        // Sort players by score to determine placement
+        let sortedPlayers = players.enumerated()
+            .map { (index: $0.offset, player: $0.element, score: scores[$0.offset]) }
+            .sorted { $0.score > $1.score }
 
-        // Only award win if there's a single winner (no ties)
-        if winnerIndices.count == 1 {
-            let winnerIndex = winnerIndices[0]
-            let winnerPlayer = players[winnerIndex]
+        // Award trophies based on placement
+        for (placement, playerData) in sortedPlayers.enumerated() {
+            guard let profileId = playerData.player.profileId,
+                  let profile = profiles.first(where: { $0.id == profileId }) else {
+                continue
+            }
 
-            // If winner has a profile, increment their wins
-            if let profileId = winnerPlayer.profileId,
-               let profile = profiles.first(where: { $0.id == profileId }) {
+            switch placement {
+            case 0: // 1st place - Gold
+                profile.goldTrophies += 1
                 profile.totalWins += 1
+            case 1: // 2nd place - Silver
+                profile.silverTrophies += 1
+            case 2: // 3rd place - Bronze
+                profile.bronzeTrophies += 1
+            default:
+                break
             }
         }
     }

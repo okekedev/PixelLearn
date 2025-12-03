@@ -12,6 +12,9 @@ final class UserProfile {
     var totalCorrectAnswers: Int
     var totalQuestionsAnswered: Int
     var storedTotalWins: Int?
+    var storedGoldTrophies: Int?
+    var storedSilverTrophies: Int?
+    var storedBronzeTrophies: Int?
     var createdAt: Date
     var lastPlayedAt: Date
     var avatarName: String?
@@ -65,6 +68,25 @@ final class UserProfile {
     var totalWins: Int {
         get { storedTotalWins ?? 0 }
         set { storedTotalWins = newValue }
+    }
+
+    var goldTrophies: Int {
+        get { storedGoldTrophies ?? 0 }
+        set { storedGoldTrophies = newValue }
+    }
+
+    var silverTrophies: Int {
+        get { storedSilverTrophies ?? 0 }
+        set { storedSilverTrophies = newValue }
+    }
+
+    var bronzeTrophies: Int {
+        get { storedBronzeTrophies ?? 0 }
+        set { storedBronzeTrophies = newValue }
+    }
+
+    var totalTrophies: Int {
+        goldTrophies + silverTrophies + bronzeTrophies
     }
 
     var displayAvatarName: String {

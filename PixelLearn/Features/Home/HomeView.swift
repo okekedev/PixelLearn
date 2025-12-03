@@ -92,10 +92,19 @@ struct HomeView: View {
     }
 
     private var statsCard: some View {
-        HStack(spacing: 24) {
-            StatItem(icon: "checkmark.circle.fill", value: "\(activeProfile.totalCorrectAnswers)", label: "Correct", color: .green)
-            Divider().frame(height: 50)
-            StatItem(icon: "trophy.fill", value: "\(activeProfile.totalWins)", label: "Wins", color: .orange)
+        VStack(spacing: 16) {
+            HStack(spacing: 24) {
+                StatItem(icon: "checkmark.circle.fill", value: "\(activeProfile.totalCorrectAnswers)", label: "Correct", color: .green)
+                Divider().frame(height: 50)
+                StatItem(icon: "trophy.fill", value: "\(activeProfile.totalWins)", label: "Wins", color: .orange)
+            }
+
+            // Trophy display
+            HStack(spacing: 20) {
+                TrophyItem(emoji: "🥇", count: activeProfile.goldTrophies, label: "Gold")
+                TrophyItem(emoji: "🥈", count: activeProfile.silverTrophies, label: "Silver")
+                TrophyItem(emoji: "🥉", count: activeProfile.bronzeTrophies, label: "Bronze")
+            }
         }
         .padding(20)
         .background(.ultraThinMaterial)
