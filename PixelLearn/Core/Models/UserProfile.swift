@@ -8,6 +8,7 @@ final class UserProfile {
     var adventureLevelGrammar: Int
     var adventureLevelMemory: Int
     var adventureLevelMath: Int
+    var storedAdventureLevelSpelling: Int?
     var totalCorrectAnswers: Int
     var totalQuestionsAnswered: Int
     var storedTotalWins: Int?
@@ -22,6 +23,7 @@ final class UserProfile {
         adventureLevelGrammar: Int = 1,
         adventureLevelMemory: Int = 1,
         adventureLevelMath: Int = 1,
+        storedAdventureLevelSpelling: Int? = 1,
         totalCorrectAnswers: Int = 0,
         totalQuestionsAnswered: Int = 0,
         storedTotalWins: Int? = 0,
@@ -35,6 +37,7 @@ final class UserProfile {
         self.adventureLevelGrammar = adventureLevelGrammar
         self.adventureLevelMemory = adventureLevelMemory
         self.adventureLevelMath = adventureLevelMath
+        self.storedAdventureLevelSpelling = storedAdventureLevelSpelling
         self.totalCorrectAnswers = totalCorrectAnswers
         self.totalQuestionsAnswered = totalQuestionsAnswered
         self.storedTotalWins = storedTotalWins
@@ -42,6 +45,11 @@ final class UserProfile {
         self.lastPlayedAt = lastPlayedAt
         self.avatarName = avatarName
         self.active = active
+    }
+
+    var adventureLevelSpelling: Int {
+        get { storedAdventureLevelSpelling ?? 1 }
+        set { storedAdventureLevelSpelling = newValue }
     }
 
     var name: String {
@@ -68,6 +76,7 @@ final class UserProfile {
         case .grammar: return adventureLevelGrammar
         case .memory: return adventureLevelMemory
         case .math: return adventureLevelMath
+        case .spelling: return adventureLevelSpelling
         }
     }
 
@@ -77,11 +86,12 @@ final class UserProfile {
         case .grammar: adventureLevelGrammar = clampedLevel
         case .memory: adventureLevelMemory = clampedLevel
         case .math: adventureLevelMath = clampedLevel
+        case .spelling: adventureLevelSpelling = clampedLevel
         }
     }
 
     var overallAdventureLevel: Int {
-        (adventureLevelGrammar + adventureLevelMemory + adventureLevelMath) / 3
+        (adventureLevelGrammar + adventureLevelMemory + adventureLevelMath + adventureLevelSpelling) / 4
     }
 
     var accuracy: Double {
@@ -93,13 +103,14 @@ final class UserProfile {
         let levels = [
             (Subject.grammar, adventureLevelGrammar),
             (Subject.memory, adventureLevelMemory),
-            (Subject.math, adventureLevelMath)
+            (Subject.math, adventureLevelMath),
+            (Subject.spelling, adventureLevelSpelling)
         ]
         return levels.max(by: { $0.1 < $1.1 })?.0 ?? .math
     }
 
     var highestLevel: Int {
-        max(adventureLevelGrammar, adventureLevelMemory, adventureLevelMath)
+        max(adventureLevelGrammar, adventureLevelMemory, adventureLevelMath, adventureLevelSpelling)
     }
 
     static let availableAvatars: [String] = [

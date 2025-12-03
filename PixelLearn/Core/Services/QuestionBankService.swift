@@ -5,6 +5,7 @@ actor QuestionBankService {
 
     private var mathQuestions: [Int: [Question]] = [:]
     private var grammarQuestions: [Int: [Question]] = [:]
+    private var spellingQuestions: [Int: [Question]] = [:]
     private var usedQuestionIds: Set<UUID> = []
 
     private init() {}
@@ -19,6 +20,8 @@ actor QuestionBankService {
             questions = mathQuestions[level] ?? []
         case .grammar:
             questions = grammarQuestions[level] ?? []
+        case .spelling:
+            questions = spellingQuestions[level] ?? []
         case .memory:
             return generateFallbackQuestion(for: subject, level: level)
         }
@@ -46,6 +49,10 @@ actor QuestionBankService {
         case .grammar:
             if grammarQuestions[level] == nil {
                 grammarQuestions[level] = generateGrammarQuestionsForLevel(level)
+            }
+        case .spelling:
+            if spellingQuestions[level] == nil {
+                spellingQuestions[level] = generateSpellingQuestionsForLevel(level)
             }
         case .memory:
             break
@@ -679,6 +686,280 @@ actor QuestionBankService {
                 explanation: g.explanation
             )
         }
+    }
+
+    // MARK: - Spelling Questions
+
+    private func generateSpellingQuestionsForLevel(_ level: Int) -> [Question] {
+        switch level {
+        case 1...10:
+            return generateFirstLetterQuestions(level: level)
+        case 11...25:
+            return generateSpellWithEmojiQuestions(level: level)
+        case 26...45:
+            return generateSpellWordQuestions(level: level)
+        default:
+            return generateCorrectSpellingQuestions(level: level)
+        }
+    }
+
+    // Level 1-10: What letter does this start with? (with emoji)
+    private func generateFirstLetterQuestions(level: Int) -> [Question] {
+        let words: [(word: String, emoji: String)] = [
+            // Simple 3-4 letter words
+            ("Apple", "🍎"), ("Ball", "⚽"), ("Cat", "🐱"), ("Dog", "🐶"),
+            ("Egg", "🥚"), ("Fish", "🐟"), ("Goat", "🐐"), ("Hat", "🎩"),
+            ("Ice", "🧊"), ("Jam", "🍯"), ("Kite", "🪁"), ("Lion", "🦁"),
+            ("Moon", "🌙"), ("Nest", "🪺"), ("Orange", "🍊"), ("Pig", "🐷"),
+            ("Queen", "👑"), ("Rain", "🌧️"), ("Sun", "☀️"), ("Tree", "🌳"),
+            ("Umbrella", "☂️"), ("Van", "🚐"), ("Water", "💧"), ("Box", "📦"),
+            ("Yarn", "🧶"), ("Zebra", "🦓"), ("Bear", "🐻"), ("Cake", "🎂"),
+            ("Duck", "🦆"), ("Frog", "🐸"), ("Grapes", "🍇"), ("House", "🏠"),
+            ("Igloo", "🏠"), ("Juice", "🧃"), ("Key", "🔑"), ("Lemon", "🍋"),
+            ("Mouse", "🐭"), ("Nurse", "👩‍⚕️"), ("Owl", "🦉"), ("Pizza", "🍕"),
+            ("Ring", "💍"), ("Star", "⭐"), ("Tiger", "🐯"), ("Violin", "🎻"),
+            ("Whale", "🐋"), ("Yak", "🦬"), ("Ant", "🐜"), ("Bee", "🐝"),
+            ("Corn", "🌽"), ("Deer", "🦌"), ("Fox", "🦊"), ("Gift", "🎁")
+        ]
+
+        let levelWords = words.shuffled().prefix(15)
+
+        return levelWords.map { item in
+            let firstLetter = String(item.word.prefix(1)).uppercased()
+            var options = [firstLetter]
+            let allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map { String($0) }
+            let wrongLetters = allLetters.filter { $0 != firstLetter }.shuffled().prefix(3)
+            options.append(contentsOf: wrongLetters)
+            options.shuffle()
+
+            return Question(
+                subject: .spelling,
+                level: level,
+                text: "\(item.emoji)\nWhat letter does \"\(item.word)\" start with?",
+                options: options,
+                correctIndex: options.firstIndex(of: firstLetter) ?? 0,
+                explanation: "\"\(item.word)\" starts with the letter \(firstLetter)"
+            )
+        }
+    }
+
+    // Level 11-25: How do you spell this? (with emoji)
+    private func generateSpellWithEmojiQuestions(level: Int) -> [Question] {
+        let words: [(word: String, emoji: String, wrong1: String, wrong2: String, wrong3: String)] = [
+            ("Apple", "🍎", "Appel", "Aple", "Aplle"),
+            ("Banana", "🍌", "Bannana", "Bananna", "Banan"),
+            ("Cat", "🐱", "Kat", "Catt", "Katt"),
+            ("Dog", "🐶", "Dogg", "Dawg", "Doge"),
+            ("Elephant", "🐘", "Elefant", "Elephent", "Eliphant"),
+            ("Fish", "🐟", "Fesh", "Phish", "Fissh"),
+            ("Giraffe", "🦒", "Giraf", "Giraff", "Jiraf"),
+            ("House", "🏠", "Hous", "Howse", "Houze"),
+            ("Igloo", "🏠", "Iglu", "Iglue", "Eegloo"),
+            ("Juice", "🧃", "Juce", "Juise", "Joose"),
+            ("Kangaroo", "🦘", "Kangaro", "Kangeroo", "Kanguru"),
+            ("Lemon", "🍋", "Lemmon", "Lemon", "Lemun"),
+            ("Monkey", "🐵", "Munkey", "Monky", "Monkee"),
+            ("Nurse", "👩‍⚕️", "Nerse", "Nurs", "Nurce"),
+            ("Orange", "🍊", "Orang", "Oranje", "Ornge"),
+            ("Penguin", "🐧", "Pengin", "Pengwin", "Penguine"),
+            ("Queen", "👑", "Qeen", "Quene", "Kween"),
+            ("Rabbit", "🐰", "Rabit", "Rabitt", "Rabbitt"),
+            ("Snake", "🐍", "Snak", "Sneak", "Snaek"),
+            ("Tiger", "🐯", "Tigger", "Tyger", "Tigar"),
+            ("Umbrella", "☂️", "Umbrela", "Umberella", "Umbrellla"),
+            ("Violin", "🎻", "Violen", "Vyolin", "Viollin"),
+            ("Whale", "🐋", "Wale", "Whail", "Whaile"),
+            ("Xylophone", "🎹", "Zylophone", "Xilophone", "Xylaphone"),
+            ("Zebra", "🦓", "Zeebra", "Zibra", "Zebrah"),
+            ("Butterfly", "🦋", "Buterfly", "Butterflye", "Buterflie"),
+            ("Dolphin", "🐬", "Dolfin", "Dolphine", "Dolpin"),
+            ("Flower", "🌸", "Flowr", "Flour", "Flowur"),
+            ("Guitar", "🎸", "Gitar", "Guiter", "Gitarr"),
+            ("Helicopter", "🚁", "Helicoptor", "Hellicopter", "Helacopter")
+        ]
+
+        let levelWords = words.shuffled().prefix(15)
+
+        return levelWords.map { item in
+            var options = [item.word, item.wrong1, item.wrong2, item.wrong3]
+            options.shuffle()
+
+            return Question(
+                subject: .spelling,
+                level: level,
+                text: "\(item.emoji)\nHow do you spell this?",
+                options: options,
+                correctIndex: options.firstIndex(of: item.word) ?? 0,
+                explanation: "The correct spelling is \"\(item.word)\""
+            )
+        }
+    }
+
+    // Level 26-45: How do you spell this word? (no emoji, harder words)
+    private func generateSpellWordQuestions(level: Int) -> [Question] {
+        let words: [(word: String, wrong1: String, wrong2: String, wrong3: String)] = [
+            ("because", "becuase", "becouse", "becase"),
+            ("believe", "beleive", "belive", "beleave"),
+            ("different", "diffrent", "diferent", "differant"),
+            ("friend", "freind", "frend", "freand"),
+            ("thought", "thot", "thougt", "thougth"),
+            ("through", "thru", "threw", "thrugh"),
+            ("beautiful", "beutiful", "beautifull", "beautyful"),
+            ("comfortable", "comfertable", "comfortible", "cumfortable"),
+            ("definitely", "definately", "definitly", "definetly"),
+            ("embarrass", "embarass", "embarras", "emberrass"),
+            ("environment", "enviroment", "enviornment", "envirnoment"),
+            ("experience", "experiance", "expirience", "experince"),
+            ("February", "Febuary", "Febrary", "Feburary"),
+            ("government", "goverment", "governmant", "govenment"),
+            ("immediately", "immediatly", "imediately", "immediatley"),
+            ("knowledge", "knowlege", "knowlede", "knoledge"),
+            ("necessary", "neccessary", "necesary", "neccesary"),
+            ("occurred", "occured", "ocurred", "occurrd"),
+            ("particularly", "particuarly", "particulary", "perticularly"),
+            ("receive", "recieve", "recive", "receeve"),
+            ("restaurant", "restaraunt", "resturant", "restraunt"),
+            ("separate", "seperate", "seprate", "separete"),
+            ("successful", "succesful", "successfull", "sucessful"),
+            ("surprise", "suprise", "surprize", "surpris"),
+            ("tomorrow", "tommorow", "tommorrow", "tomorow"),
+            ("unfortunately", "unfortunatly", "unfortunetly", "unfourtunately"),
+            ("usually", "usally", "usualy", "ussually"),
+            ("Wednesday", "Wensday", "Wednsday", "Wendesday"),
+            ("which", "wich", "whitch", "witch"),
+            ("writing", "writting", "writeing", "writng")
+        ]
+
+        let levelWords = words.shuffled().prefix(15)
+
+        return levelWords.map { item in
+            var options = [item.word, item.wrong1, item.wrong2, item.wrong3]
+            options.shuffle()
+
+            return Question(
+                subject: .spelling,
+                level: level,
+                text: "How do you spell the word that means:\n\"\(getDefinition(for: item.word))\"",
+                options: options,
+                correctIndex: options.firstIndex(of: item.word) ?? 0,
+                explanation: "The correct spelling is \"\(item.word)\""
+            )
+        }
+    }
+
+    // Level 46-65: Which is the correct spelling? (tricky words)
+    private func generateCorrectSpellingQuestions(level: Int) -> [Question] {
+        let words: [(word: String, wrong1: String, wrong2: String, wrong3: String)] = [
+            ("accommodate", "acommodate", "accomodate", "accommadate"),
+            ("acknowledgment", "acknowledgement", "acknowlegment", "acknoledgment"),
+            ("acquisition", "aquisition", "acqusition", "acquisision"),
+            ("amateur", "amature", "amatuer", "amatur"),
+            ("apparent", "apparant", "aparent", "apparrent"),
+            ("calendar", "calender", "calandar", "calander"),
+            ("Caribbean", "Carribean", "Caribean", "Carribbean"),
+            ("cemetery", "cemetary", "cematery", "cemetry"),
+            ("colleague", "colleage", "collaegue", "collegue"),
+            ("committee", "comittee", "commitee", "committe"),
+            ("conscience", "concience", "consience", "conscence"),
+            ("consensus", "concensus", "consensis", "consensous"),
+            ("correspondence", "correspondance", "corrispondence", "corresponence"),
+            ("desperate", "desparate", "desprate", "desperete"),
+            ("disappear", "dissapear", "disapear", "dissappear"),
+            ("discipline", "disipline", "discapline", "dicipline"),
+            ("entrepreneur", "entrepeneur", "entreprenur", "entreprener"),
+            ("exaggerate", "exagerate", "exaggarate", "exadgerate"),
+            ("existence", "existance", "existense", "existince"),
+            ("fluorescent", "flourescent", "flouresent", "flurescent"),
+            ("guarantee", "guarentee", "garantee", "guarrantee"),
+            ("harass", "harrass", "harras", "haras"),
+            ("hierarchy", "heirarchy", "hierarcy", "heirarcy"),
+            ("independent", "independant", "indipendent", "independint"),
+            ("intelligence", "inteligence", "intellegence", "inteligance"),
+            ("liaison", "liason", "liasion", "liasson"),
+            ("lightning", "lightening", "litening", "lightnig"),
+            ("maintenance", "maintainance", "maintenence", "maintanance"),
+            ("maneuver", "manuever", "manoeuver", "manuver"),
+            ("Mediterranean", "Mediteranean", "Mediterranian", "Mediterrenean"),
+            ("millennium", "millenium", "milennium", "milleniun"),
+            ("miniature", "minature", "miniture", "minituare"),
+            ("miscellaneous", "miscellanous", "miscelaneous", "miscellanious"),
+            ("mischievous", "mischievious", "mischevous", "mischieveous"),
+            ("occasionally", "occasionaly", "occassionally", "ocassionally"),
+            ("occurrence", "occurence", "occurance", "occurrance"),
+            ("parliament", "parliment", "parlimant", "parlaiment"),
+            ("perseverance", "perseverence", "perserverance", "persaverance"),
+            ("phenomenon", "phenomemon", "phenomenom", "phenominon"),
+            ("playwright", "playwrite", "playright", "playwrigt"),
+            ("possession", "posession", "possesion", "posesion"),
+            ("precede", "procede", "presede", "preceed"),
+            ("privilege", "priviledge", "privelege", "privlege"),
+            ("pronunciation", "pronounciation", "prononciation", "pronuciation"),
+            ("questionnaire", "questionaire", "questionairre", "questionnare"),
+            ("recommend", "recomend", "reccomend", "recommand"),
+            ("reference", "refrence", "referance", "refference"),
+            ("relevant", "relevent", "relavent", "revelant"),
+            ("rhythm", "rythm", "rythym", "rhythym"),
+            ("schedule", "scedule", "schedual", "shedule"),
+            ("supersede", "supercede", "superceed", "superseed"),
+            ("tendency", "tendancy", "tendancy", "tendencey"),
+            ("thorough", "thorogh", "thurough", "thourough"),
+            ("tyranny", "tyrrany", "tyrany", "tyrranny"),
+            ("vacuum", "vaccum", "vacume", "vaccuum"),
+            ("vicious", "viscious", "visious", "vicsious"),
+            ("weird", "wierd", "wired", "werid")
+        ]
+
+        let levelWords = words.shuffled().prefix(15)
+
+        return levelWords.map { item in
+            var options = [item.word, item.wrong1, item.wrong2, item.wrong3]
+            options.shuffle()
+
+            return Question(
+                subject: .spelling,
+                level: level,
+                text: "Which is the correct spelling?",
+                options: options,
+                correctIndex: options.firstIndex(of: item.word) ?? 0,
+                explanation: "The correct spelling is \"\(item.word)\""
+            )
+        }
+    }
+
+    private func getDefinition(for word: String) -> String {
+        let definitions: [String: String] = [
+            "because": "for the reason that",
+            "believe": "to accept as true",
+            "different": "not the same",
+            "friend": "a person you like and trust",
+            "thought": "an idea in your mind",
+            "through": "from one end to another",
+            "beautiful": "very pretty or attractive",
+            "comfortable": "feeling relaxed and at ease",
+            "definitely": "without any doubt",
+            "embarrass": "to make someone feel awkward",
+            "environment": "the natural world around us",
+            "experience": "something that happens to you",
+            "February": "the second month of the year",
+            "government": "the group that runs a country",
+            "immediately": "right now, without delay",
+            "knowledge": "information and understanding",
+            "necessary": "needed or required",
+            "occurred": "happened or took place",
+            "particularly": "especially or specifically",
+            "receive": "to get something given to you",
+            "restaurant": "a place to eat meals",
+            "separate": "to divide or keep apart",
+            "successful": "achieving a goal or doing well",
+            "surprise": "something unexpected",
+            "tomorrow": "the day after today",
+            "unfortunately": "sadly or unluckily",
+            "usually": "most of the time",
+            "Wednesday": "the fourth day of the week",
+            "which": "asking about a choice",
+            "writing": "putting words on paper"
+        ]
+        return definitions[word] ?? word
     }
 
     // MARK: - Helpers

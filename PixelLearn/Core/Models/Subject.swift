@@ -5,6 +5,7 @@ enum Subject: String, Codable, CaseIterable, Identifiable {
     case grammar = "Grammar"
     case memory = "Memory"
     case math = "Math"
+    case spelling = "Spelling"
 
     var id: String { rawValue }
 
@@ -15,6 +16,7 @@ enum Subject: String, Codable, CaseIterable, Identifiable {
         case .grammar: return "text.book.closed"
         case .memory: return "brain"
         case .math: return "function"
+        case .spelling: return "character.cursor.ibeam"
         }
     }
 
@@ -23,6 +25,7 @@ enum Subject: String, Codable, CaseIterable, Identifiable {
         case .grammar: return [.blue, .indigo]
         case .memory: return [.purple, .pink]
         case .math: return [.orange, .red]
+        case .spelling: return [.green, .teal]
         }
     }
 }
