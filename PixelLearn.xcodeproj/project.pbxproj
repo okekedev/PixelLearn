@@ -24,6 +24,7 @@
 		AAB401A22EDD4ED7002FA4F2 /* MultiplayerMemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4019D2EDD4ED7002FA4F2 /* MultiplayerMemoryGameView.swift */; };
 		AAB401A42EDD4F03002FA4F2 /* MemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401A32EDD4F03002FA4F2 /* MemoryGameView.swift */; };
 		AAB401C62EDE45A0002FA4F2 /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401C42EDE45A0002FA4F2 /* SharedComponents.swift */; };
+		AAB401C92EDFFC5A002FA4F2 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401C72EDFFC5A002FA4F2 /* DesignConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		AAB4019E2EDD4ED7002FA4F2 /* MultiplayerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerSetupView.swift; sourceTree = "<group>"; };
 		AAB401A32EDD4F03002FA4F2 /* MemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameView.swift; sourceTree = "<group>"; };
 		AAB401C42EDE45A0002FA4F2 /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComponents.swift; sourceTree = "<group>"; };
+		AAB401C72EDFFC5A002FA4F2 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				AAB401C52EDE45A0002FA4F2 /* Components */,
 				30000007 /* Models */,
 				30000008 /* Services */,
+				AAB401C82EDFFC5A002FA4F2 /* Theme */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -177,6 +180,15 @@
 			);
 			path = Components;
 			sourceTree = "<group>";
+		};
+		AAB401C82EDFFC5A002FA4F2 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				AAB401C72EDFFC5A002FA4F2 /* DesignConstants.swift */,
+			);
+			name = Theme;
+			path = PixelLearn/Core/Theme;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -259,6 +271,7 @@
 				0000000B /* QuizEngine.swift in Sources */,
 				AAB401C62EDE45A0002FA4F2 /* SharedComponents.swift in Sources */,
 				0000000D /* HomeView.swift in Sources */,
+				AAB401C92EDFFC5A002FA4F2 /* DesignConstants.swift in Sources */,
 				AAB401A02EDD4ED7002FA4F2 /* MultiplayerSetupView.swift in Sources */,
 				AAB401A12EDD4ED7002FA4F2 /* MultiplayerGameView.swift in Sources */,
 				AAB401A22EDD4ED7002FA4F2 /* MultiplayerMemoryGameView.swift in Sources */,

@@ -116,7 +116,7 @@ struct MultiplayerSetupView: View {
                 Text("Players")
                     .font(.headline)
                 Spacer()
-                Text("\(players.count)/4")
+                Text("\(players.count)/\(Design.Game.maxPlayers)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -135,7 +135,7 @@ struct MultiplayerSetupView: View {
             }
 
             // Inline add player section
-            if players.count < 4 {
+            if players.count < Design.Game.maxPlayers {
                 addPlayerSection
             }
         }
@@ -200,7 +200,7 @@ struct MultiplayerSetupView: View {
                             }
                             .padding(12)
                             .background(themeColors[0].opacity(0.05))
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipShape(RoundedRectangle(cornerRadius: Design.CornerRadius.button))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(themeColors[0].opacity(0.2), lineWidth: 1)
@@ -273,14 +273,14 @@ struct MultiplayerSetupView: View {
                         Slider(value: Binding(
                             get: { Double(guestLevel) },
                             set: { guestLevel = Int($0) }
-                        ), in: 1.0...65.0, step: 1)
+                        ), in: Double(Design.Game.minLevel)...Double(Design.Game.maxLevel), step: 1)
                         .tint(nextPlayerColor)
                     }
                 }
             }
             .padding(12)
             .background(nextPlayerColor.opacity(0.05))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: Design.CornerRadius.button))
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(nextPlayerColor.opacity(0.2), lineWidth: 1)
@@ -469,15 +469,15 @@ struct MultiplayerSetupView: View {
                 .padding()
                 .background(
                     LinearGradient(
-                        colors: players.count >= 2 ? themeColors : [.gray, .gray],
+                        colors: players.count >= Design.Game.minPlayers ? themeColors : [.gray, .gray],
                         startPoint: .leading,
                         endPoint: .trailing
                     )
                 )
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .shadow(color: players.count >= 2 ? themeColors[0].opacity(0.4) : .clear, radius: 8, y: 4)
+                .clipShape(RoundedRectangle(cornerRadius: Design.CornerRadius.button))
+                .shadow(color: players.count >= Design.Game.minPlayers ? themeColors[0].opacity(0.4) : .clear, radius: 8, y: 4)
         }
-        .disabled(players.count < 2)
+        .disabled(players.count < Design.Game.minPlayers)
     }
 }
 
@@ -535,14 +535,14 @@ struct PlayerRowWithSlider: View {
                     Slider(value: Binding(
                         get: { Double(player.level) },
                         set: { player.level = Int($0) }
-                    ), in: 1.0...65.0, step: 1)
+                    ), in: Double(Design.Game.minLevel)...Double(Design.Game.maxLevel), step: 1)
                     .tint(player.color)
                 }
             }
         }
         .padding(12)
         .background(player.color.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: Design.CornerRadius.button))
     }
 }
 
@@ -614,7 +614,7 @@ struct SubjectButton: View {
                     ? AnyShapeStyle(LinearGradient(colors: subject.gradientColors, startPoint: .topLeading, endPoint: .bottomTrailing))
                     : AnyShapeStyle(Color.clear)
             )
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: Design.CornerRadius.button))
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(isSelected ? Color.clear : Color.gray.opacity(0.3), lineWidth: 1)

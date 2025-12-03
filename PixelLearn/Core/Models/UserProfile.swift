@@ -103,7 +103,7 @@ final class UserProfile {
     }
 
     func setAdventureLevel(_ level: Int, for subject: Subject) {
-        let clampedLevel = max(1, min(65, level))
+        let clampedLevel = max(Design.Game.minLevel, min(Design.Game.maxLevel, level))
         switch subject {
         case .grammar: adventureLevelGrammar = clampedLevel
         case .memory: adventureLevelMemory = clampedLevel

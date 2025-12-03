@@ -297,12 +297,12 @@ struct MultiplayerGameView: View {
             scores[currentPlayerIndex] += 1
             streaks[currentPlayerIndex] += 1
             if streaks[currentPlayerIndex] >= 2 {
-                levels[currentPlayerIndex] = min(65, levels[currentPlayerIndex] + 1)
+                levels[currentPlayerIndex] = min(Design.Game.maxLevel, levels[currentPlayerIndex] + 1)
                 streaks[currentPlayerIndex] = 0
             }
         } else {
             streaks[currentPlayerIndex] = 0
-            levels[currentPlayerIndex] = max(1, levels[currentPlayerIndex] - 1)
+            levels[currentPlayerIndex] = max(Design.Game.minLevel, levels[currentPlayerIndex] - 1)
         }
 
         showingResult = true
