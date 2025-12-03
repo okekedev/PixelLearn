@@ -25,6 +25,7 @@
 		AAB401A42EDD4F03002FA4F2 /* MemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401A32EDD4F03002FA4F2 /* MemoryGameView.swift */; };
 		AAB401C62EDE45A0002FA4F2 /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401C42EDE45A0002FA4F2 /* SharedComponents.swift */; };
 		AAB401C92EDFFC5A002FA4F2 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401C72EDFFC5A002FA4F2 /* DesignConstants.swift */; };
+		AAB401CB2EDFFD16002FA4F2 /* PodiumCelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB401CA2EDFFD16002FA4F2 /* PodiumCelebrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		AAB401A32EDD4F03002FA4F2 /* MemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameView.swift; sourceTree = "<group>"; };
 		AAB401C42EDE45A0002FA4F2 /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComponents.swift; sourceTree = "<group>"; };
 		AAB401C72EDFFC5A002FA4F2 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
+		AAB401CA2EDFFD16002FA4F2 /* PodiumCelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumCelebrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 		AAB401C52EDE45A0002FA4F2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AAB401CA2EDFFD16002FA4F2 /* PodiumCelebrationView.swift */,
 				AAB401C42EDE45A0002FA4F2 /* SharedComponents.swift */,
 			);
 			path = Components;
@@ -270,6 +273,7 @@
 				0000000A /* AdaptiveLevelManager.swift in Sources */,
 				0000000B /* QuizEngine.swift in Sources */,
 				AAB401C62EDE45A0002FA4F2 /* SharedComponents.swift in Sources */,
+				AAB401CB2EDFFD16002FA4F2 /* PodiumCelebrationView.swift in Sources */,
 				0000000D /* HomeView.swift in Sources */,
 				AAB401C92EDFFC5A002FA4F2 /* DesignConstants.swift in Sources */,
 				AAB401A02EDD4ED7002FA4F2 /* MultiplayerSetupView.swift in Sources */,
