@@ -38,9 +38,6 @@ class QuizEngine: ObservableObject {
             level: levelManager.currentLevel
         )
         currentQuestion = question
-        if question == nil {
-            loadError = "Unable to load question. Please try again."
-        }
         isLoading = false
     }
 
@@ -52,9 +49,6 @@ class QuizEngine: ObservableObject {
             level: level
         )
         currentQuestion = question
-        if question == nil {
-            loadError = "Unable to load question. Please try again."
-        }
         isLoading = false
     }
 
