@@ -1,7 +1,7 @@
 # PixelLearn
 
 <p align="center">
-  <img src="deployment/screenshots/pixellogo.jpeg" alt="PixelLearn Logo" width="150">
+  <img src="deployment/screenshots/cropped/pixellogo_1024.png" alt="PixelLearn Logo" width="150">
 </p>
 
 <p align="center">
@@ -24,11 +24,11 @@
 ---
 
 <p align="center">
-  <img src="deployment/screenshots/pliphonepromo.png" alt="Screenshot 1" width="200">
+  <img src="deployment/screenshots/cropped/pliphonepromo.png" alt="Screenshot 1" width="200">
   &nbsp;&nbsp;&nbsp;
-  <img src="deployment/screenshots/pliphonepromo2.png" alt="Screenshot 2" width="200">
+  <img src="deployment/screenshots/cropped/pliphonepromo2.png" alt="Screenshot 2" width="200">
   &nbsp;&nbsp;&nbsp;
-  <img src="deployment/screenshots/pliphonepromo3.png" alt="Screenshot 3" width="200">
+  <img src="deployment/screenshots/cropped/pliphonepromo3.png" alt="Screenshot 3" width="200">
 </p>
 
 ---
